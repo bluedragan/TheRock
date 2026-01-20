@@ -42,7 +42,11 @@ else()
       set(LLVM_RUNTIME_TARGETS "default;amdgcn-amd-amdhsa")
       set(RUNTIMES_amdgcn-amd-amdhsa_LLVM_ENABLE_RUNTIMES "openmp")
       set(RUNTIMES_amdgcn-amd-amdhsa_LLVM_ENABLE_PER_TARGET_RUNTIME_DIR ON)
-      set(FLANG_RUNTIME_F128_MATH_LIB "libquadmath")
+      if(CMAKE_SYSTEM_PROCESSOR MATCHES "ppc64le")
+        set(FLANG_RUNTIME_F128_MATH_LIB "")
+      else() 
+        set(FLANG_RUNTIME_F128_MATH_LIB "libquadmath")
+      endif() 
       set(LIBOMPTARGET_BUILD_DEVICE_FORTRT ON)
       #TODO: Enable when HWLOC dependency is figured out
       #set(LIBOMP_USE_HWLOC ON)
@@ -56,7 +60,11 @@ endif()
 
 # Set the LLVM_ENABLE_PROJECTS variable before including LLVM's CMakeLists.txt
 set(BUILD_TESTING OFF CACHE BOOL "DISABLE BUILDING TESTS IN SUBPROJECTS" FORCE)
-set(LLVM_TARGETS_TO_BUILD "AMDGPU;X86" CACHE STRING "Enable LLVM Targets" FORCE)
+if(CMAKE_SYSTEM_PROCESSOR MATCHES "ppc64le")
+  set(LLVM_TARGETS_TO_BUILD "AMDGPU;PowerPC" CACHE STRING "Enable LLVM Targets" FORCE)
+else()
+  set(LLVM_TARGETS_TO_BUILD "AMDGPU;X86" CACHE STRING "Enable LLVM Targets" FORCE)
+endif()
 
 # Packaging.
 set(PACKAGE_VENDOR "AMD" CACHE STRING "Vendor" FORCE)

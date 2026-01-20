@@ -8,7 +8,7 @@
 	branch = amd-mainline
 [submodule "llvm-project"]
 	path = compiler/amd-llvm
-	url = https://github.com/ROCm/llvm-project.git
+	url = https://github.com/bluedragan/llvm-project
 	branch = amd-mainline
 [submodule "rccl"]
 	path = comm-libs/rccl
@@ -31,11 +31,11 @@
 	url = https://github.com/ROCm/rocprof-trace-decoder.git
 [submodule "rocm-libraries"]
 	path = rocm-libraries
-	url = https://github.com/ROCm/rocm-libraries
+	url = https://github.com/bluedragan/rocm-libraries
 	branch = develop
 [submodule "rocm-systems"]
 	path = rocm-systems
-	url = https://github.com/ROCm/rocm-systems.git
+	url = https://github.com/bluedragan/rocm-systems
 	branch = develop
 [submodule "spirv-llvm-translator"]
 	path = compiler/spirv-llvm-translator
